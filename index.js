@@ -43,5 +43,33 @@ const bookStore = {
     ]
 }
 
-// Write your code here!
+// Step 1: Select and update header
+const bookStoreTitle = document.getElementById('header');
+bookStoreTitle.textContent = bookStore.name;
 
+// Step 2: Get the list element and remove the placeholder
+const bookList = document.getElementById('bookList');
+const placeholder = document.getElementById('delete-this');
+if (placeholder) placeholder.remove();
+
+// Step 3: Loop through books and display each one
+bookStore.books.forEach(book => {
+  // Create elements
+  const bookContainer = document.createElement('li');
+  const bookTitle = document.createElement('h3');
+  const bookAuthor = document.createElement('p');
+  const bookImage = document.createElement('img');
+
+  // Set content
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = `by ${book.author}`;
+  bookImage.src = book.imageUrl;
+  bookImage.alt = book.title;
+  bookImage.style.width = '150px';
+
+  // Append elements
+  bookContainer.appendChild(bookTitle);
+  bookContainer.appendChild(bookAuthor);
+  bookContainer.appendChild(bookImage);
+  bookList.appendChild(bookContainer);
+});
